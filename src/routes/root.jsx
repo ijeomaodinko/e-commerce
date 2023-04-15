@@ -1,10 +1,13 @@
 import React from 'react'
+import Container from '../components/container'
 
 const Root = () => {
   return (
-    <div>
+    <Container>
+    <h1>
       Root page is here 
-    </div>
+    </h1>
+    </Container>
   )
 }
 
