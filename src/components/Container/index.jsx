@@ -2,6 +2,9 @@ import React from 'react';
 import { LOGO } from '../utils/contents';
 import { string } from 'prop-types';
 import Navbar from '../Navbar/Navbar';
+import Footer from '../Footer/footer';
+import { COMPANY_NAME } from '../utils/contents';
+import "./container.css";
 
 const Container = ({children}) => {
   const loggedIn = true, isAdmin =true;
@@ -29,6 +32,7 @@ const Container = ({children}) => {
     <div className='container'>
     <Navbar  logo={LOGO} loggedIn={loggedIn} isAdmin={isAdmin} items={items} />
       <div className='content'>  {children} </div>
+    <Footer  logo={LOGO} companyName={COMPANY_NAME} />
     </div>
   )
 }
