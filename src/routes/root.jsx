@@ -1,5 +1,6 @@
-import React from 'react'
-import Container from '../components/container'
+import React from 'react';
+import Container from '../components/Container/index';
+import ProductIndex from '../features/product/product';
 
 const Root = () => {
   return (
@@ -7,6 +8,7 @@ const Root = () => {
     <h1>
       Root page is here 
     </h1>
+    <ProductIndex />
     </Container>
   )
 }

@@ -1,17 +1,17 @@
-import React, { UseEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector , useDispatch } from 'react-redux';
-import { getAllProducts, fetchProduct, getProductStatus, getProductError } from './productSlice';
+import { getAllProducts, fetchProducts, getProductStatus, getProductError } from './productSlice';
 
-const porductIndex= () => {
+const ProductIndex= () => {
 
   const dispatch = useDispatch();
   const products = useSelector(getAllProducts);
   const status = useSelector(getProductStatus);
   const error = useSelector(getProductError);
 
-  UseEffect(() => {
+  useEffect(() => {
     if (status === 'idle'){
-      dispatch(fetchProduct());
+      dispatch(fetchProducts());
     }
   }, [status, dispatch]);
 
@@ -29,4 +29,4 @@ const porductIndex= () => {
   )
 }
 
-export default porductIndex
+export default ProductIndex;
