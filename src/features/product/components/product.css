@@ -1,0 +1,34 @@
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.product {
+    width: calc(20% - 10px);
+    height: 200px;
+    margin-bottom: 20px;
+    border: 1px solid gainsboro;
+    padding: 0.5rem;
+}
+
+.product img {
+    max-width: 100%;
+    height: 100px;
+}
+
+.product-details-container {
+    display: flex;
+    flex-direction: row;
+}
+.product-image {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.product-data {
+    flex: 2;
+}
+.product-data h2 {
+    margin-top: 0;
+}
