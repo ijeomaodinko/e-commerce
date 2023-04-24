@@ -9,6 +9,7 @@ import { Provider } from 'react-redux';
 import Root from './routes/root';
 import About from './routes/about';
 import ErrorPage from './error-page';
+import ProductDetails from './features/product/components/productDetails';
 
 
 const router = createBrowserRouter([
@@ -20,6 +21,11 @@ const router = createBrowserRouter([
   {
     path: "/About",
     element: <About />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/products/:productId",
+    element: <ProductDetails  />,
     errorElement: <ErrorPage />,
   },
 ]);
