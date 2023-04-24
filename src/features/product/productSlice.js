@@ -19,8 +19,22 @@ export const productSlice = createSlice({
   name: 'product',
   initialState,
   reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(fetchProducts.pending, (state) => {
+      state.status = "loading";
+    }).addCase(fetchProducts.fulfilled, (state, action) => {
+      state.status = "succeeded";
+      state.products= action.payload;
+    }).addCase(fetchProducts.rejected, (state, action) => {
+      state.status = "error";
+      state.error = action.error.message;
+    })
+  }
 });
 
-export const {} = productSlice.actions
+export const {} = productSlice.actions;
+export const getAllProducts = (state) => state.product.products;
+export const getProductStatus = (state) => state.product.status;
+export const getProductError = (state) => state.product.error;
 
-export default productSlice.reducer
+export default productSlice.reducer;
