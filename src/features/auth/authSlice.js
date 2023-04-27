@@ -33,6 +33,38 @@ export const signUpUser = createAsyncThunk(
     }
 );
 
+export const loginUser = createAsyncThunk(
+  'auth/loginUser',
+  async({ email, password }, { dispatch })=> {
+    try{
+      const response = await axios.post(`${API_URL}/api/auth/login`, {
+        user: {
+          email,
+          password,
+        }
+      });
+      if (response.status === 200) {
+        const { data } = response;
+        const user = data.data;
+        const token = response.headers.authorization;
+        localStorage.setItem('token', token);
+        localStorage.setItem('user', JSON.stringify(user));
+
+        window.location.href = '/';
+        return response.data;
+      }
+    } catch (error) {
+      console.log(error);
+      dispatch(setError(error.response.data));
+    }
+  }
+);
+
+
+
+
+
+
 
 const initialState = {
   // user: null,
@@ -58,6 +90,16 @@ export const authSlice = createSlice({
       state.isAuthenticated= true;
       state.user = action.payload;
     }).addCase(signUpUser.rejected, (state, action) => {
+      state.status = "error";
+      state.error = action.error.message;
+    })
+    .addCase(loginUser.pending, (state) => {
+      state.status = "loading";
+    }).addCase(loginUser.fulfilled, (state, action) => {
+      state.status = "succeeded";
+      state.isAuthenticated= true;
+      state.user = action.payload;
+    }).addCase(loginUser.rejected, (state, action) => {
       state.status = "error";
       state.error = action.error.message;
     });

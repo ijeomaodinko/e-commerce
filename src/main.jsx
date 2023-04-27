@@ -11,6 +11,7 @@ import About from './routes/about';
 import ErrorPage from './error-page';
 import ProductDetails from './features/product/components/productDetails';
 import SignUpForm from './features/auth/forms/signUpForm';
+import LoginForm from './features/auth/forms/loginForm';
 
 
 const router = createBrowserRouter([
@@ -27,6 +28,11 @@ const router = createBrowserRouter([
   {
     path: "auth/signup",
     element: <SignUpForm />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "auth/login",
+    element: <LoginForm />,
     errorElement: <ErrorPage />,
   },
   {
