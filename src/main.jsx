@@ -25,13 +25,13 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/products/:productId",
-    element: <ProductDetails  />,
+    path: "auth/signup",
+    element: <SignUpForm />,
     errorElement: <ErrorPage />,
   },
   {
-    path: "auth/signup",
-    element: <SignUpForm />,
+    path: "/products/:productId",
+    element: <ProductDetails  />,
     errorElement: <ErrorPage />,
   },
 ]);
