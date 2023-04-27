@@ -1,32 +1,54 @@
 import React from 'react';
-import { LOGO } from '../utils/contents';
-import { string } from 'prop-types';
+import { COMPANY_NAME, LOGO } from '../utils/contents';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/footer';
-import { COMPANY_NAME } from '../utils/contents';
 import "./container.css";
+import { useAuth } from '../utils/contents';
+import { useAdmin } from '../utils/contents';
 
-const Container = ({children}) => {
-  const loggedIn = true, isAdmin =true;
+const Container = ({ children }) => {
+  const loggedIn = useAuth();
+
+  const isAdmin = useAdmin();
+
+  isAdmin = false;
   const items = [
+    { 
+      title: "Home",
+      url: '/',
+      icon: '',
+      access: 'all',
+    },
+    {
+      title: "About",
+      url: '/about',
+      icon: '',
+      access: 'all',
+    },
   { 
-    title: "Home",
-    url: '/',
+    title: "Profile",
+    url: '/profile',
     icon: '',
-    access: 'all',
-  },
-  {
-    title: "About",
-    url: '/about',
-    icon: '',
-    access: 'all',
+    access: 'loggedIn',
   },
   {
     title: "Admin",
-    url: '/',
+    url: '/admin',
     icon: '',
     access: 'admin',
   },
+  {
+    title: "Login",
+    url: '/auth/login',
+    icon: '',
+    access: 'loggedOut',
+  },
+  {
+    title: "Signup",
+    url: '/auth/signup',
+    icon: '',
+    access: 'loggedOut',
+  }
   ];
   return (
     <div className='container'>
