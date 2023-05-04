@@ -5,7 +5,7 @@ import { getProductDetails } from '../productSlice';
 import './product.css';
 import Container from '../../../components/Container';
 
-function ProductDetails() {
+const ProductDetails = () => {
   const selectedProduct = useSelector(getProductDetails);
   const navigate = useNavigate();
 
@@ -16,14 +16,14 @@ function ProductDetails() {
     <Container>
     <div>
       <h1> Product Details</h1>
-      {selectedProduct.map((product) => (
+      { selectedProduct.map((product) => (
         <div key = {product.id} className='product-details-container'>
           <div className='product-image'>
             <img src={product.img} alt={product.name} />
              </div>
              <div className='product-data'>
-              <h2> {product.name}</h2>
-              <p> {product.description}</p>
+              <h2>{product.name}</h2>
+              <p>{product.description}</p>
               <p> ${product.price}</p>
               <div className='company'>
                 <h3> Company</h3>

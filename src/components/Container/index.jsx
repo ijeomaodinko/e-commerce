@@ -11,7 +11,6 @@ const Container = ({ children }) => {
 
   const isAdmin = useAdmin();
 
-  isAdmin = false;
   const items = [
     { 
       title: "Home",
@@ -26,10 +25,10 @@ const Container = ({ children }) => {
       access: 'all',
     },
   { 
-    title: "Profile",
-    url: '/profile',
+    title: "Add Product",
+    url: '/products/new',
     icon: '',
-    access: 'loggedIn',
+    access: 'admin',
   },
   {
     title: "Admin",

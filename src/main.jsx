@@ -12,7 +12,7 @@ import ErrorPage from './error-page';
 import ProductDetails from './features/product/components/productDetails';
 import SignUpForm from './features/auth/forms/signUpForm';
 import LoginForm from './features/auth/forms/loginForm';
-
+import ProductForm from './features/product/components/productForm';
 
 const router = createBrowserRouter([
   {
@@ -37,7 +37,12 @@ const router = createBrowserRouter([
   },
   {
     path: "/products/:productId",
-    element: <ProductDetails  />,
+    element: <ProductDetails />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/products/new",
+    element: <ProductForm  />,
     errorElement: <ErrorPage />,
   },
 ]);
