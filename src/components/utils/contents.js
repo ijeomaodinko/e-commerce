@@ -6,12 +6,12 @@ export const API_URL = "http://127.0.0.1:3000";
 
 
 export const useAuth = () => {
-   const token = localStorage.getItem('token');
+   const token = sessionStorage.getItem('token');
    return token ? true : false;
 };
 
 export const useAdmin = () => {
-    const user = JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(sessionStorage.getItem('user'));
     return user && user.role === 'admin' ? true : false;
 };
 
@@ -29,8 +29,8 @@ export const handleToast = ({msg, type = 'success'}) =>
     });
 
 export const getAuthHeaders = () => {
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     return {
-        Authorization: `Bearer ${token}`,
+        Authorization: token,
     };
 }

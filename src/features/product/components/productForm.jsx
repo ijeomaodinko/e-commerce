@@ -34,19 +34,29 @@ function ProductForm() {
         }
     }, [status, dispatch]);
 
- if (status === 'loading') {
-    return <div className="loader"> loading... </div>;
- }
- if (error) {
-handleToast({ msg: error, type: "error" });
-return <div className='error'> {error}</div>;
- }
+//  if (status === 'loading') {
+//     return <div className="loader"> loading... </div>;
+//  }
+//  if (error) {
+// handleToast({ msg: error, type: "error" });
+// return <div className='error'> {error}</div>;
+//  }
+
     const { register, handleSubmit, formState:{ errors } } = useForm({
       resolver: yupResolver(productSchema)
     });
-    const onSubmit = product => console.log(product);
 
+const onSubmit = (product) => {
+    dispatch(createProduct(product));
+    console.log(product);
+};
 
+if (status === 'loaading'){
+    return <div> Loading...</div>;
+}
+if (status === 'error'){
+    return <div>{error}</div>
+}
   return (
     <Container>
         <ToastContainer />
@@ -77,7 +87,7 @@ return <div className='error'> {error}</div>;
 
         <label htmlFor='company_id'> Company: </label>
         <select name="company_id" {...register('company_id')}>
-            {company.map((company) => (
+            {companies.map((company) => (
                 <option key={company.id} value={company.id}>
                     {company.name}
                 </option>

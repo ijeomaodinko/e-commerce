@@ -19,8 +19,8 @@ export const signUpUser = createAsyncThunk(
           const { data } = response;
         const user = data.data;
         const token = response.headers.authorization;
-        localStorage.setItem('token', token);
-        localStorage.setItem('user', JSON.stringify(user));
+        sessionStorage.setItem('token', token);
+        sessionStorage.setItem('user', JSON.stringify(user));
         console.log('user', user, 'token', token);
 
         window.location.href = '/';
@@ -47,8 +47,8 @@ export const loginUser = createAsyncThunk(
         const { data } = response;
         const user = data.data;
         const token = response.headers.authorization;
-        localStorage.setItem('token', token);
-        localStorage.setItem('user', JSON.stringify(user));
+        sessionStorage.setItem('token', token);
+        sessionStorage.setItem('user', JSON.stringify(user));
 
         window.location.href = '/';
         return response.data;
@@ -61,8 +61,8 @@ export const loginUser = createAsyncThunk(
 );
 
 export const logOutUser = () => {
-  localStorage.removeItem('token');
-  localStorage.removeItem('user');
+  sessionStorage.removeItem('token');
+  sessionStorage.removeItem('user');
   window.location.href = '/auth/login';
 }
 

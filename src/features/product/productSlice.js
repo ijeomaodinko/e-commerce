@@ -38,9 +38,11 @@ export const fetchCompanies = createAsyncThunk(
 export const createProduct = createAsyncThunk(
   'product/createProduct',
   async (product) => {
-    const response = await axios.post(`${API_URL}/products`, { product }, {
+    const response = await axios.post(`${API_URL}/products`, { product: product }, {
       headers,
     });
+    console.log(response.data, 'response.data');
+    window.location.href = '/';
     return response.data;
   }
 );

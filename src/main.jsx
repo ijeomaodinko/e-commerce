@@ -3,16 +3,24 @@ import ReactDOM from 'react-dom/client'
 import {
   createBrowserRouter,
   RouterProvider,
+  Navigate,
 } from "react-router-dom";
 import store from './app/store';
 import { Provider } from 'react-redux';
 import Root from './routes/root';
 import About from './routes/about';
+import { useAuth } from './components/utils/contents';
 import ErrorPage from './error-page';
 import ProductDetails from './features/product/components/productDetails';
 import SignUpForm from './features/auth/forms/signUpForm';
 import LoginForm from './features/auth/forms/loginForm';
 import ProductForm from './features/product/components/productForm';
+
+
+export const PrivateRoute = ({ children }) => {
+  const auth = useAuth();
+  if (!auth) return < Navigate to="/auth/login"  />
+};
 
 const router = createBrowserRouter([
   {
