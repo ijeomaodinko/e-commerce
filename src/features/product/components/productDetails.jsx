@@ -1,12 +1,14 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { getProductDetails } from '../productSlice';
+import { getProductDetails, getAllCompanies, getAllCategories } from '../productSlice';
 import './product.css';
 import Container from '../../../components/Container';
 
 const ProductDetails = () => {
   const selectedProduct = useSelector(getProductDetails);
+  const companies = useSelector(getAllCompanies);
+  const categories = useSelector(getAllCategories);
   const navigate = useNavigate();
 
   function handleGoBack() {
@@ -17,7 +19,10 @@ const ProductDetails = () => {
     return <div>No product details found.</div>;
   }
 
-  const product = selectedProduct[0]; 
+  const product = selectedProduct[0];
+
+  const company = companies.find((c) => c.id === product.company_id);
+  const category = categories.find((c) => c.id === product.category_id);
 
   return (
     <Container>
@@ -33,11 +38,11 @@ const ProductDetails = () => {
             <p>${product.price}</p>
             <div className='company'>
               <h3>Company</h3>
-              <p>{product.company && product.company.name}</p>
+              <p>{company ? company.name : 'Unknown Company'}</p>
             </div>
             <div className='category'>
               <h3>Category</h3>
-              <p>{product.category && product.category.name}</p>
+              <p>{category ? category.name : 'Unknown Category'}</p>
             </div>
             <button onClick={handleGoBack} type='button'>
               Back

@@ -37,7 +37,6 @@ const signUpSchema = yup.object().shape({
 const SignUpForm = () => {
   const dispatch = useDispatch();
   const error = useSelector(selectError);
-  // const status = useSelector(selectStatus);
 
 useEffect(() => {
   if (error){

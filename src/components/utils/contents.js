@@ -33,4 +33,4 @@ export const getAuthHeaders = () => {
     return {
         Authorization: token,
     };
-}
+};

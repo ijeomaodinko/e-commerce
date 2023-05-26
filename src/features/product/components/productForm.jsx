@@ -34,14 +34,6 @@ function ProductForm() {
         }
     }, [status, dispatch]);
 
-//  if (status === 'loading') {
-//     return <div className="loader"> loading... </div>;
-//  }
-//  if (error) {
-// handleToast({ msg: error, type: "error" });
-// return <div className='error'> {error}</div>;
-//  }
-
     const { register, handleSubmit, formState:{ errors } } = useForm({
       resolver: yupResolver(productSchema)
     });

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { API_URL } from '../../components/utils/contents';
 import { getAuthHeaders } from '../../components/utils/contents';
 
-const headers = getAuthHeaders()
+const headers = getAuthHeaders();
 
 
 export const fetchProducts = createAsyncThunk(
@@ -18,7 +18,7 @@ export const fetchCategories = createAsyncThunk(
   'product/fetchCategories',
   async () => {
     const response = await axios.get(`${API_URL}/categories`, {
-      headers,
+      headers
     });
     return response.data;
   }
@@ -29,7 +29,7 @@ export const fetchCompanies = createAsyncThunk(
   'product/fetchCompanies',
   async () => {
   const response = await axios.get(`${API_URL}/companies`, {
-    headers,
+    headers
   })
   return response.data
 }
@@ -39,7 +39,7 @@ export const createProduct = createAsyncThunk(
   'product/createProduct',
   async (product) => {
     const response = await axios.post(`${API_URL}/products`, { product: product }, {
-      headers,
+      headers
     });
     console.log(response.data, 'response.data');
     window.location.href = '/';
@@ -65,7 +65,7 @@ export const productSlice = createSlice({
   reducers: {
     selectProduct: (state, action) => {
       state.selectedProduct = action.payload;
-    }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchProducts.pending, (state) => {
