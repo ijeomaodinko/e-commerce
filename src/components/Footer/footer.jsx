@@ -5,7 +5,7 @@ import './footer.css';
 import {  LOGO, COMPANY_NAME } from '../utils/contents';
 
 
-const Footer = ({logo, companyName }) => {
+const Footer = ({logo = { LOGO }, companyName }) => {
     const currentYear =new Date().getFullYear();
   return (
     <div className='footer'>

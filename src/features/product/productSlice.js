@@ -47,8 +47,15 @@ export const createProduct = createAsyncThunk(
   }
 );
 
-
-
+// implement orders
+export const addProductToOrder = createAsyncThunk(
+  'product/addProductToOrder',
+  async ({ productId, orderId }) => {
+    const response = await axios.post(`${API_URL}/orders/${orderId}/products`, { productId }, { headers });
+    return response.data;
+  }
+);
+//
 
 const initialState = {
   products: [],

@@ -7,7 +7,8 @@ import { logOutUser } from '../../features/auth/authSlice';
 import { LOGO } from '../utils/contents';
 
 
-const Navbar =({ logo={LOGO}, items, loggedIn, isAdmin })=> {
+
+const Navbar =({ logo= LOGO, items, loggedIn, isAdmin })=> {
   const dispatch = useDispatch();
 
   const filteredItems = items.filter((item) => {
@@ -33,7 +34,7 @@ const Navbar =({ logo={LOGO}, items, loggedIn, isAdmin })=> {
   return (
     <div className="navbar">
     <div className="navbar_logo">
-      <img src= { logo } alt="logo" />
+      <img src = { logo } alt="logo" />
       </div>
       <div className='navbar_items'>
        {filteredItems.map((item) => (
@@ -51,7 +52,7 @@ const Navbar =({ logo={LOGO}, items, loggedIn, isAdmin })=> {
 
 Navbar.propTypes = {
   items: PropTypes.array.isRequired,
-  LOGO: PropTypes.string.isRequired,
+  logo: PropTypes.string.isRequired,
   loggedIn: PropTypes.bool.isRequired,
   isAdmin: PropTypes.bool.isRequired,
 };
