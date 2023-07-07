@@ -16,7 +16,7 @@ export const CartWidget = ({ productsCount }) => {
 
   return (
     <button className="container" onClick={navigateToCart}>
-      <span className="productsCount">{count}</span>
+   <span className="productsCount" onClick={incrementCount}>{count}</span>
       <img src={shoppingCart} className="shoppingCart" alt="Go to Cart" />
     </button>
   );
