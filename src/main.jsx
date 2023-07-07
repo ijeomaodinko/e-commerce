@@ -15,11 +15,14 @@ import ProductDetails from './features/product/components/productDetails';
 import SignUpForm from './features/auth/forms/signUpForm';
 import LoginForm from './features/auth/forms/loginForm';
 import ProductForm from './features/product/components/productForm';
+import CartElement from './routes/cart';
+
 
 
 export const PrivateRoute = ({ children }) => {
   const auth = useAuth();
-  if (!auth) return < Navigate to="/auth/login"  />
+  if (!auth) return < Navigate to="/auth/login"  />;
+  return children;
 };
 
 const router = createBrowserRouter([
@@ -34,12 +37,12 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "auth/signup",
+    path: "/auth/signup",
     element: <SignUpForm />,
     errorElement: <ErrorPage />,
   },
   {
-    path: "auth/login",
+    path: "/auth/login",
     element: <LoginForm />,
     errorElement: <ErrorPage />,
   },
@@ -51,6 +54,12 @@ const router = createBrowserRouter([
   {
     path: "/products/new",
     element: <ProductForm  />,
+    errorElement: <ErrorPage />,
+  },
+
+  {
+    path: "/Cart",
+    element: <CartElement />,
     errorElement: <ErrorPage />,
   },
 ]);

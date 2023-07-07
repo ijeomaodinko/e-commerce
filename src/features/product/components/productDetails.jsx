@@ -1,15 +1,17 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getProductDetails, getAllCompanies, getAllCategories } from '../productSlice';
 import './product.css';
 import Container from '../../../components/Container';
+import { addToCart } from '../../Cart/cartSlice';
 
 const ProductDetails = () => {
   const selectedProduct = useSelector(getProductDetails);
   const companies = useSelector(getAllCompanies);
   const categories = useSelector(getAllCategories);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   function handleGoBack() {
     navigate(-1);
@@ -23,6 +25,12 @@ const ProductDetails = () => {
 
   const company = companies.find((c) => c.id === product.company_id);
   const category = categories.find((c) => c.id === product.category_id);
+
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
+    console.log(product)
+  };
+  
 
   return (
     <Container>
@@ -44,6 +52,7 @@ const ProductDetails = () => {
               <h3>Category</h3>
               <p>{category ? category.name : 'Unknown Category'}</p>
             </div>
+            <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
             <button onClick={handleGoBack} type='button'>
               Back
             </button>

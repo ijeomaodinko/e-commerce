@@ -18,6 +18,7 @@ const ProductCard = ({product}) => {
         navigate(`/products/${productId}`);
         console.log(response, 'response, click response');
     };
+
   return (
     <div key={product.id} className='product'
     onClick={() => handleProductClick(product.id)}>
