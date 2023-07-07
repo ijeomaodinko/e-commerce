@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import shoppingCart from '../../assets/shoppingCart';
+import { FaShoppingCart } from 'react-icons/fa';
+
 
 export const CartWidget = ({ productsCount }) => {
   const navigate = useNavigate();
@@ -15,9 +16,9 @@ export const CartWidget = ({ productsCount }) => {
   };
 
   return (
-    <button className="container" onClick={navigateToCart}>
-   <span className="productsCount" onClick={incrementCount}>{count}</span>
-      <img src={shoppingCart} className="shoppingCart" alt="Go to Cart" />
-    </button>
+    <div onClick={navigateToCart} >
+     <span className="productsCount" onClick={incrementCount}>{count}</span>
+      <FaShoppingCart className="shoppingCart" alt="Go to Cart"  />
+   </div>
   );
 };

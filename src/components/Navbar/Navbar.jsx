@@ -5,6 +5,7 @@ import './nav.css';
 import { useDispatch } from 'react-redux';
 import { logOutUser } from '../../features/auth/authSlice';
 import { LOGO } from '../utils/contents';
+import { CartWidget } from './cartWidget';
 
 
 
@@ -36,6 +37,7 @@ const Navbar =({ logo= LOGO, items, loggedIn, isAdmin })=> {
     <div className="navbar_logo">
       <img src = { logo } alt="logo" />
       </div>
+      <CartWidget />
       <div className='navbar_items'>
        {filteredItems.map((item) => (
         <NavItems key={item.title} item={item} />

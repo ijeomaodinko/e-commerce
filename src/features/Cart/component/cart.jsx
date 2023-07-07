@@ -19,6 +19,7 @@ const Cart = () => {
         <ul>
           {cart.map((product) => (
             <li key={product.id}>
+             <img src={product.img} alt={product.name} />
               {product.name} - ${product.price}
               <button onClick={() => handleRemoveFromCart(product.id)}>Remove</button>
             </li>

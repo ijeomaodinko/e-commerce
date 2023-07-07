@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getProductDetails, getAllCompanies, getAllCategories } from '../productSlice';
 import './product.css';
 import Container from '../../../components/Container';
 import { addToCart } from '../../Cart/cartSlice';
+import { fetchCompanies } from '../productSlice';
+import { fetchCategories } from '../productSlice';
 
 const ProductDetails = () => {
   const selectedProduct = useSelector(getProductDetails);
@@ -12,6 +14,14 @@ const ProductDetails = () => {
   const categories = useSelector(getAllCategories);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCompanies());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, [dispatch]);
 
   function handleGoBack() {
     navigate(-1);
@@ -23,7 +33,8 @@ const ProductDetails = () => {
 
   const product = selectedProduct[0];
 
-  const company = companies.find((c) => c.id === product.company_id);
+  const company = companies.find((c) => c.id === product.company_id) || {};
+
   const category = categories.find((c) => c.id === product.category_id);
 
   const handleAddToCart = (product) => {
@@ -46,7 +57,7 @@ const ProductDetails = () => {
             <p>${product.price}</p>
             <div className='company'>
               <h3>Company</h3>
-              <p>{company ? company.name : 'Unknown Company'}</p>
+              <p>{company.name || 'Unknown Company'}</p>
             </div>
             <div className='category'>
               <h3>Category</h3>
