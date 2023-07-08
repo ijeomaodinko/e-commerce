@@ -14,18 +14,23 @@ const ProductDetails = () => {
   const categories = useSelector(getAllCategories);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart.products); // Access the cart items from the Redux store
 
   useEffect(() => {
     dispatch(fetchCompanies());
+    dispatch(fetchCategories());
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(fetchCategories());
-  }, [dispatch]);
+    // Save cart data to local session storage whenever it changes
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
 
   function handleGoBack() {
     navigate(-1);
   }
+
+  const isInCart = (productId) => Object.keys(cart || {}).includes(productId.toString());
 
   if (!selectedProduct || selectedProduct.length === 0) {
     return <div>No product details found.</div>;
@@ -38,10 +43,14 @@ const ProductDetails = () => {
   const category = categories.find((c) => c.id === product.category_id);
 
   const handleAddToCart = (product) => {
-    dispatch(addToCart(product));
-    console.log(product)
+    if (isInCart(product.id)) {
+      // Product is already in the cart, handle accordingly (e.g., show a notification)
+      console.log('Product is already in the cart');
+    } else {
+      dispatch(addToCart(product));
+      console.log(product);
+    }
   };
-  
 
   return (
     <Container>
@@ -63,7 +72,9 @@ const ProductDetails = () => {
               <h3>Category</h3>
               <p>{category ? category.name : 'Unknown Category'}</p>
             </div>
-            <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
+            <button disabled={isInCart(product.id)} onClick={() => handleAddToCart(product)}>Add to Cart</button>
+
+            <button> Buy </button>            
             <button onClick={handleGoBack} type='button'>
               Back
             </button>
