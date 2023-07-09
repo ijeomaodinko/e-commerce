@@ -7,6 +7,7 @@ import Container from '../../../components/Container';
 import { addToCart } from '../../Cart/cartSlice';
 import { fetchCompanies } from '../productSlice';
 import { fetchCategories } from '../productSlice';
+import { getAllProducts, selectProduct } from '../productSlice';
 
 const ProductDetails = () => {
   const selectedProduct = useSelector(getProductDetails);
@@ -29,6 +30,15 @@ const ProductDetails = () => {
   function handleGoBack() {
     navigate(-1);
   }
+
+  const products = useSelector(getAllProducts);
+  const handleOrder = (productId) => {
+    const response = selectedProduct[0]; // Use selectedProduct instead of product
+    dispatch(selectProduct(response));
+    navigate('/orderform', { state: { product: response } }); // Pass response as the product
+    console.log(response, 'order, click response');
+  };
+  
 
   const isInCart = (productId) => Object.keys(cart || {}).includes(productId.toString());
 
@@ -73,8 +83,9 @@ const ProductDetails = () => {
               <p>{category ? category.name : 'Unknown Category'}</p>
             </div>
             <button disabled={isInCart(product.id)} onClick={() => handleAddToCart(product)}>Add to Cart</button>
-
-            <button> Buy </button>            
+          
+          <button onClick={handleOrder}>Order</button>
+            
             <button onClick={handleGoBack} type='button'>
               Back
             </button>

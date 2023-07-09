@@ -47,7 +47,15 @@ const Container = ({ children }) => {
     url: '/auth/signup',
     icon: '',
     access: 'loggedOut',
-  }
+  }, 
+
+  {
+    title: "Order",
+    url: '/orders',
+    icon: '',
+    access: 'all',
+  },
+
   ];
   return (
     <div className='container'>

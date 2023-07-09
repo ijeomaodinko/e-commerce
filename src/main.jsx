@@ -16,6 +16,8 @@ import SignUpForm from './features/auth/forms/signUpForm';
 import LoginForm from './features/auth/forms/loginForm';
 import ProductForm from './features/product/components/productForm';
 import CartElement from './routes/cart';
+import OrderElement from './routes/order';
+import OrderForm from './features/orders/components/orderForm';
 
 
 
@@ -62,6 +64,18 @@ const router = createBrowserRouter([
     element: <CartElement />,
     errorElement: <ErrorPage />,
   },
+
+  {
+    path: "/Order",
+    element: <OrderElement />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/OrderForm",
+    element: <OrderForm />,
+    errorElement: <ErrorPage />,
+  },
+
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
