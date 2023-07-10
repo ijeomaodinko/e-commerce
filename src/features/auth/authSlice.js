@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { API_URL } from '../../components/utils/contents';
-// import { useDispatch } from 'react-redux';
+
 
 export const signUpUser = createAsyncThunk(
     'auth/signUpUser',
@@ -65,10 +65,6 @@ export const logOutUser = () => {
   sessionStorage.removeItem('user');
   window.location.href = '/auth/login';
 }
-
-
-
-
 
 
 const initialState = {

@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { API_URL } from '../../components/utils/contents';
 import { getAuthHeaders } from '../../components/utils/contents';
+import { setError } from '../auth/authSlice';
 
 const headers = getAuthHeaders();
 
@@ -10,10 +11,38 @@ export const fetchOrders = createAsyncThunk('order/fetchOrders', async () => {
   return response.data;
 });
 
-export const createOrder = createAsyncThunk('order/createOrder', async (order) => {
-  const response = await axios.post(`${API_URL}/orders`, { order }, { headers });
-  return response.data;
-});
+
+export const createOrder = createAsyncThunk(
+  'order/createOrder',
+  async (order, { dispatch, getState }) => {
+    try {
+      const state = getState();
+      const user = state.auth.user;
+      const token = state.auth.token;
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+        },
+      };
+
+      const orderData = {
+        ...order,
+        user_id: user?.id, // Add the user_id to the order data
+      };
+
+      const response = await axios.post(`${API_URL}/orders`, { order: orderData }, config);
+      console.log(response.data, 'response.data');
+      window.location.href = '/order';
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      dispatch(setError(error.response.data));
+      throw error;
+    }
+  }
+);
+
 
 const initialState = {
   orders: [],
@@ -48,6 +77,7 @@ export const orderSlice = createSlice({
       .addCase(createOrder.rejected, (state, action) => {
         state.status = 'error';
         state.error = action.error.message;
+        console.log(action.error);
       });
   },
 });
