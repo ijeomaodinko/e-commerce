@@ -35,19 +35,26 @@ export const signUpUser = createAsyncThunk(
 
 export const loginUser = createAsyncThunk(
   'auth/loginUser',
-  async({ email, password }, { dispatch })=> {
-    try{
+  async ({ email, password }, { dispatch }) => {
+    try {
       const response = await axios.post(`${API_URL}/api/auth/login`, {
         user: {
           email,
           password,
-        }
+        },
       });
+
       if (response.status === 200) {
         const { data } = response;
         const user = data.data;
         const token = response.headers.authorization;
+
+        // Save the token in the session storage
         sessionStorage.setItem('token', token);
+
+        // Attach the token to subsequent API requests
+        axios.defaults.headers.common['Authorization'] = token;
+
         sessionStorage.setItem('user', JSON.stringify(user));
 
         window.location.href = '/';
@@ -60,10 +67,37 @@ export const loginUser = createAsyncThunk(
   }
 );
 
+// export const loginUser = createAsyncThunk(
+//   'auth/loginUser',
+//   async({ email, password }, { dispatch })=> {
+//     try{
+//       const response = await axios.post(`${API_URL}/api/auth/login`, {
+//         user: {
+//           email,
+//           password,
+//         }
+//       });
+//       if (response.status === 200) {
+//         const { data } = response;
+//         const user = data.data;
+//         const token = response.headers.authorization;
+//         sessionStorage.setItem('token', token);
+//         sessionStorage.setItem('user', JSON.stringify(user));
+
+//         window.location.href = '/';
+//         return response.data;
+//       }
+//     } catch (error) {
+//       console.log(error);
+//       dispatch(setError(error.response.data));
+//     }
+//   }
+// );
+
 export const logOutUser = () => {
   sessionStorage.removeItem('token');
   sessionStorage.removeItem('user');
-  window.location.href = '/auth/login';
+  window.location.href = '/';
 }
 
 

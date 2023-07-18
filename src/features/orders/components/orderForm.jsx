@@ -15,7 +15,7 @@ const OrderForm = () => {
     const error = useSelector(getOrderError);
     const [quantity, setQuantity] = useState(1);
     const selectedProduct = useSelector(getProductDetails);
-    const user = useSelector(selectUser);
+    
 
     if (!selectedProduct || selectedProduct.length === 0) {
         return <div>No product details found.</div>;
@@ -23,7 +23,7 @@ const OrderForm = () => {
 
     const location = useLocation();
     const product = location.state?.product;
-
+      
 
     useEffect(() => {
         console.log(product);
@@ -40,26 +40,30 @@ const OrderForm = () => {
     };
 
     const totalPrice = product?.price * quantity;
-    
-    const handleSubmit = () => {
-        const order = {
-          product_id: product.id,
-          user_id: user?.id,
-          company_id: product.company_id,
-          quantity: quantity,
-          price: totalPrice,
-        };
 
-        const config = {
-            headers: {
-              Authorization: `Bearer ${sessionStorage.getItem('token')}`,
-            },
-        };
-        dispatch(createOrder(order, config));
-        setQuantity(1);
-        console.log(order);
-      };
+    const user = JSON.parse(sessionStorage.getItem('user')); 
 
+    const userId = user ? user.id : null; 
+
+    console.log(userId);
+
+  const handleSubmit = () => {
+    const order = {
+      product_id: product.id,
+     user_id: userId,
+    };
+  
+    const config = {
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+      },
+    };
+  
+    dispatch(createOrder(order, config));
+    setQuantity(1);
+    console.log(order);
+  };
+  
 
 
     if (status === 'loading') {

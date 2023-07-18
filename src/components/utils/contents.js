@@ -11,9 +11,13 @@ export const useAuth = () => {
 };
 
 export const useAdmin = () => {
-    const user = JSON.parse(sessionStorage.getItem('user'));
-    return user && user.role === 'admin' ? true : false;
-};
+    const user = sessionStorage.getItem('user');
+    if (user) {
+      const parsedUser = JSON.parse(user);
+      return parsedUser.role === 'admin';
+    }
+    return false;
+  };
 
 export const handleToast = ({msg, type = 'success'}) =>
     toast(msg, {
