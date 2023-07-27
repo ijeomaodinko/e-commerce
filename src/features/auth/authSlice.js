@@ -23,7 +23,7 @@ export const signUpUser = createAsyncThunk(
         sessionStorage.setItem('user', JSON.stringify(user));
         console.log('user', user, 'token', token);
 
-        window.location.href = '/';
+        window.location.href = '/login';
         return response.data;
         }
       }catch (error) {
@@ -66,33 +66,6 @@ export const loginUser = createAsyncThunk(
     }
   }
 );
-
-// export const loginUser = createAsyncThunk(
-//   'auth/loginUser',
-//   async({ email, password }, { dispatch })=> {
-//     try{
-//       const response = await axios.post(`${API_URL}/api/auth/login`, {
-//         user: {
-//           email,
-//           password,
-//         }
-//       });
-//       if (response.status === 200) {
-//         const { data } = response;
-//         const user = data.data;
-//         const token = response.headers.authorization;
-//         sessionStorage.setItem('token', token);
-//         sessionStorage.setItem('user', JSON.stringify(user));
-
-//         window.location.href = '/';
-//         return response.data;
-//       }
-//     } catch (error) {
-//       console.log(error);
-//       dispatch(setError(error.response.data));
-//     }
-//   }
-// );
 
 export const logOutUser = () => {
   sessionStorage.removeItem('token');

@@ -4,13 +4,14 @@
     justify-content: space-between;
     height: 60px;
     padding: 0 20px;
-    background-color: #333;
+    background-color: #e52d27;
     color: #fff;
 }
 
 .footer_logo img{
     max-width: 100%;
-    max-height: 3rem;
+    max-height: 5.6rem;
+    margin-top: 0.51rem;
 }
 
 .footer_info {

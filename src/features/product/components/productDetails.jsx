@@ -8,6 +8,7 @@ import { addToCart } from '../../Cart/cartSlice';
 import { fetchCompanies } from '../productSlice';
 import { fetchCategories } from '../productSlice';
 import { getAllProducts, selectProduct } from '../productSlice';
+import { useAuth } from '../../../components/utils/contents';
 
 const ProductDetails = () => {
   const selectedProduct = useSelector(getProductDetails);
@@ -17,6 +18,9 @@ const ProductDetails = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.products); // Access the cart items from the Redux store
 
+  const isloggedIn = useAuth();
+
+  
   useEffect(() => {
     dispatch(fetchCompanies());
     dispatch(fetchCategories());
@@ -64,7 +68,7 @@ const ProductDetails = () => {
 
   return (
     <Container>
-      <div>
+      <div className='product-detail-container'>
         <h1>Product Details</h1>
         <div key={product.id} className='product-details-container'>
           <div className='product-image'>
@@ -75,16 +79,18 @@ const ProductDetails = () => {
             <p>{product.description}</p>
             <p>${product.price}</p>
             <div className='company'>
-              <h3>Company</h3>
-              <p>{company.name || 'Unknown Company'}</p>
+              <h3>Company: 
+              <span>{company.name || 'Unknown Company'}</span>               
+              </h3>
             </div>
             <div className='category'>
-              <h3>Category</h3>
-              <p>{category ? category.name : 'Unknown Category'}</p>
+              <h3>Category:
+              <span>{category ? category.name : 'Unknown Category'}</span> 
+              </h3>
             </div>
-            <button disabled={isInCart(product.id)} onClick={() => handleAddToCart(product)}>Add to Cart</button>
+            { isloggedIn &&   <button disabled={isInCart(product.id)} onClick={() => handleAddToCart(product)}>Add to Cart</button>}
           
-          <button onClick={handleOrder}>Order</button>
+       { isloggedIn && <button onClick={handleOrder}>Order</button> }
             
             <button onClick={handleGoBack} type='button'>
               Back

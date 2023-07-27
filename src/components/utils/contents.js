@@ -1,7 +1,8 @@
 import { toast } from "react-toastify";
+import Logo from "../../assets/logo.png";
 
-export const LOGO = "My Logo";
-export const COMPANY_NAME = "Company Name";
+export const LOGO = Logo;
+export const COMPANY_NAME = "EasyBazaar";
 export const API_URL = "http://127.0.0.1:3000";
 
 
@@ -38,3 +39,10 @@ export const getAuthHeaders = () => {
         Authorization: token,
     };
 };
+
+
+
+
+export const capitalizeFirstLetter = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}

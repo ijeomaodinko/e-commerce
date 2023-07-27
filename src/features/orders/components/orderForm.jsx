@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector, useStore  } from 'react-redux';
-import { createOrder, getAllOrders, getOrderError, getOrderStatus } from '../orderSlice';
+import { createOrder, getAllOrders, getOrderError, getOrderStatus, fetchOrders } from '../orderSlice';
+import { fetchCompanies, getAllCompanies } from '../../product/productSlice';
 import { useEffect } from 'react';
 import { getProductDetails } from '../../product/productSlice';
 import { useLocation } from 'react-router-dom';
@@ -23,11 +24,22 @@ const OrderForm = () => {
 
     const location = useLocation();
     const product = location.state?.product;
-      
+
+    const companies = useSelector(getAllCompanies);
+    useEffect(() => {
+        dispatch(fetchCompanies());
+      }, [dispatch]);
+
+
+    const company = companies.find((c) => c.id === product.company_id) || {};
 
     useEffect(() => {
         console.log(product);
     }, [product]);
+
+    useEffect(() => {
+        dispatch(fetchCompanies());
+      }, [dispatch]);
 
     const handleIncrement = () => {
         setQuantity(quantity + 1);
@@ -47,23 +59,36 @@ const OrderForm = () => {
 
     console.log(userId);
 
+    const companyId = company && company.id ? company.id : null;
+    console.log(companyId)
+
+
   const handleSubmit = () => {
     const order = {
       product_id: product.id,
      user_id: userId,
+     product_name: product.name,
+    quantity: quantity,
+    price: totalPrice,
+    company_id: companyId,
     };
   
-    const config = {
-      headers: {
-        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
-      },
-    };
+    // const config = {
+    //   headers: {
+    //     Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+    //   },
+    // };
   
-    dispatch(createOrder(order, config));
+    dispatch(createOrder(order))
+    .then(() => {
+        dispatch(fetchOrders()); // Fetch orders again after creating the new one to update the order list.
+      })
+      .catch((error) => {
+        console.error('Error creating order:', error);
+      });
     setQuantity(1);
     console.log(order);
   };
-  
 
 
     if (status === 'loading') {
@@ -97,14 +122,23 @@ const OrderForm = () => {
                 </div>
                 <button onClick={handleSubmit}>Place Order</button>
             </div>
-            <div>
-                <h2>Orders</h2>
-                <ul>
-                    {orders.map((order) => (
-                        <li key={order.id}>{order.name}</li>
-                    ))}
-                </ul>
-            </div>
+           <div>
+           <h2>All Orders</h2>
+      <ul>
+        {orders.map((order) => (
+          <li key={order.id}>
+            <p>Order ID: {order.id}</p>
+            <p>User ID: {order.user.id}</p>
+            <p>Product ID: {order.product.id}</p>
+                <p>Product Name: {order.product_name}</p>
+                <p>Quantity: {order.quantity}</p>
+                <p>Price: {order.price}</p>
+                <p>Company ID: {order.company_id}</p>
+              <p>Company Name: {order.company.name || 'Unknown Company'}</p>
+          </li>
+        ))}
+      </ul>
+           </div>
         </div>
     );
 };

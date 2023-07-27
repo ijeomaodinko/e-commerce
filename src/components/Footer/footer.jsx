@@ -13,10 +13,10 @@ const Footer = ({logo = { LOGO }, companyName }) => {
         <Link to="/">
             <img src={ LOGO } alt="logo" />
         </Link>
+        </div>
         <div className='footer_info'>
             &copy; {currentYear} {COMPANY_NAME}. All rights reserved.
         </div>
-    </div>
     </div>
   );
 };
