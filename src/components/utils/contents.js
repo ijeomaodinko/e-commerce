@@ -7,20 +7,20 @@ export const API_URL = "http://127.0.0.1:3000";
 
 
 export const useAuth = () => {
-   const token = sessionStorage.getItem('token');
-   return token ? true : false;
+    const token = sessionStorage.getItem('token');
+    return token ? true : false;
 };
 
 export const useAdmin = () => {
     const user = sessionStorage.getItem('user');
     if (user) {
-      const parsedUser = JSON.parse(user);
-      return parsedUser.role === 'admin';
+        const parsedUser = JSON.parse(user);
+        return parsedUser.role === 'admin';
     }
     return false;
-  };
+};
 
-export const handleToast = ({msg, type = 'success'}) =>
+export const handleToast = ({ msg, type = 'success' }) =>
     toast(msg, {
         position: "top-center",
         autoClose: 9000,
@@ -39,10 +39,3 @@ export const getAuthHeaders = () => {
         Authorization: token,
     };
 };
-
-
-
-
-export const capitalizeFirstLetter = (str) => {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-}

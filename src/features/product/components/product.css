@@ -5,7 +5,7 @@
 }
 
 .product {
-    width: calc(20% - 10px);
+    width: calc(20% - 15px);
     height: 200px;
     margin-bottom: 20px;
     border: 1px solid gainsboro;
@@ -13,6 +13,8 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+    background-color: #fff;
+    border-radius: 0.5rem;
 }
 
 .product img {
@@ -22,12 +24,14 @@
 
 .product-detail-container{
     max-width: 80%;
-    background-color: #f3eeee;
+    background-color: #fff;
     margin-left: auto;
     margin-right: auto;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     border-radius: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 }
 .product-details-container {
     display: flex;

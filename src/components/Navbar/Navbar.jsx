@@ -7,7 +7,7 @@ import { logOutUser } from '../../features/auth/authSlice';
 import { COMPANY_NAME, LOGO } from '../utils/contents';
 import { CartWidget } from './cartWidget';
 import { useSelector } from 'react-redux';
-import { capitalizeFirstLetter } from '../utils/contents'
+
 
 
 const Navbar =({ logo= LOGO, items, loggedIn, isAdmin })=> {
@@ -40,8 +40,10 @@ const Navbar =({ logo= LOGO, items, loggedIn, isAdmin })=> {
   const user = JSON.parse(sessionStorage.getItem('user')); 
 
   const userName = user ? user.name : null; 
-  const capitalizedString = capitalizeFirstLetter(userName);
+
   console.log(userName);
+
+
 
   return (
     <div className="navbar">
@@ -50,7 +52,7 @@ const Navbar =({ logo= LOGO, items, loggedIn, isAdmin })=> {
       <p className='brandName'>{COMPANY_NAME}</p>
       </div>
       <CartWidget    productsCount={productsCount}  />
-     {loggedIn ===true && <p> Hello <span>{ capitalizedString } </span></p>}
+     {loggedIn ===true && <p> Hello <span>{ userName.charAt(0).toUpperCase() + userName.slice(1) } </span></p>}
       <div className='navbar_items'>
        {filteredItems.map((item) => (
          <NavItems key={item.title} item={item} />
