@@ -1,0 +1,51 @@
+h2 {
+    text-align: center;
+    font-size: xx-large;
+}
+
+.orderContainer {
+    display: flex;
+    flex-direction: row;
+    background-color: #fff;
+    gap: 9rem;
+    border-radius: 0.5rem;
+}
+
+.orderImgContainer {
+    padding-left: 1rem;
+    font-size: 0.7rem;
+    font-style: oblique;
+    font-weight: bold;
+    line-height: 6px;
+    padding-bottom: 0.5rem;
+}
+.orderimg {
+    width: 100%;
+    height: 6rem;
+    border: 1px solid #f3eeee;
+    border-radius: 0.5rem;
+}
+
+li {
+    border: 2px solid #f3eeee;
+    text-decoration: none;
+}
+
+.orderInfo {
+    display: flex;
+    flex-direction: row;
+    gap: 9rem;
+}
+
+.orderPrice {
+    font-weight: bold;
+    font-size: large;
+    margin-top: 1.6rem;
+}
+
+.orderCompanyName,
+.orderProductName {
+font-weight: bold;
+margin-top: 1.6rem;
+}
+

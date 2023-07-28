@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchOrders, getAllOrders, getOrderError, getOrderStatus } from '../orderSlice';
+import './order.css';
+
 
 const OrderCard = () => {
   const dispatch = useDispatch();
@@ -26,17 +28,29 @@ const OrderCard = () => {
       <ul>
         {orders.map((order) => (
           <li key={order.id}>
-            <p>Order ID: {order.id}</p>
-            <p>User ID: {order.user.id}</p>
-            <p>Product ID: {order.product.id}</p>
-            <p>Product Name: {order.product_name}</p>
-            <p>Quantity: {order.quantity}</p>
-            <p>Price: {order.price}</p>
-            <p>Company ID: {order.company_id}</p>
-            <p>Company Name: {order.company.name || 'Unknown Company'}</p>
+            <div className='orderContainer'>
+            <div className='orderImgContainer'>
+              <p>Order ID: {order.id}</p>
+              <p>User ID: {order.user.id}</p>
+              <img src={order.product.img} alt={order.product_name} className='orderimg' />
+            </div>
+            <div className='orderInfo'>
+              <div>
+
+              <p>Product ID: {order.product.id}</p>
+              <p className='orderProductName'>Product Name: {order.product_name}</p>
+              <p className='orderCompanyName'> Company Name: {order.company.name || 'Unknown Company'}</p>
+              </div>
+              <div>
+              <p>Quantity: {order.quantity}</p>
+              <p className='orderPrice'> Price: ${order.price}</p>
+              </div>
+            </div>
+            </div>
           </li>
         ))}
       </ul>
+
     </div>
   );
 };
