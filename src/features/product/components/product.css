@@ -62,3 +62,52 @@ select {
 .productscount {
     color: #000;
 }
+
+@media (max-width: 600px) {
+    .product-list {
+      justify-content: center; 
+    }
+  
+    .product {
+      width: calc(45% - 10px); 
+      height: 180px; 
+    }
+  
+    .product-detail-container {
+      max-width: 90%; 
+    }
+  
+    .product-details-container {
+      flex-direction: column; 
+      align-items: center; 
+    }
+  
+    .product-image {
+      margin-right: 0; 
+      margin-bottom: 20px; 
+    }
+  
+    .product-data {
+      flex: none;
+      text-align: center; 
+    }
+  
+    .product-data h2 {
+      margin-left: 0; 
+    }
+    
+    .product h6,
+    .product p {
+      margin-top: 10px;
+      font-size: small;
+    }
+  
+    select {
+      width: 100%; 
+    }
+  
+    .productscount {
+      color: #000; 
+    }
+  }
+  

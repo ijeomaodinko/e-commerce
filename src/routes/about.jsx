@@ -1,11 +1,12 @@
 import React from 'react'
-import Container from '../components/Container/index'
+import Container from '../components/Container/index';
+import AboutPage from '../features/about/about';
 
 const About = () => {
   return (
     <Container>
     <div>
-      About page is here
+      <AboutPage />
     </div>
     </Container>
   )

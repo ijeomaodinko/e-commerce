@@ -8,8 +8,6 @@ import { COMPANY_NAME, LOGO } from '../utils/contents';
 import { CartWidget } from './cartWidget';
 import { useSelector } from 'react-redux';
 
-
-
 const Navbar =({ logo= LOGO, items, loggedIn, isAdmin })=> {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
@@ -44,7 +42,6 @@ const Navbar =({ logo= LOGO, items, loggedIn, isAdmin })=> {
   console.log(userName);
 
 
-
   return (
     <div className="navbar">
     <div className="navbar_logo">
@@ -52,8 +49,8 @@ const Navbar =({ logo= LOGO, items, loggedIn, isAdmin })=> {
       <p className='brandName'>{COMPANY_NAME}</p>
       </div>
       <CartWidget    productsCount={productsCount}  />
-     {loggedIn ===true && <p> Hello <span>{ userName.charAt(0).toUpperCase() + userName.slice(1) } </span></p>}
       <div className='navbar_items'>
+     {loggedIn ===true && <p> Hello, <span>{ userName.charAt(0).toUpperCase() + userName.slice(1) } </span></p>}
        {filteredItems.map((item) => (
          <NavItems key={item.title} item={item} />
        ))}

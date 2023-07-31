@@ -5,10 +5,8 @@ import Footer from '../Footer/footer';
 import "./container.css";
 import { useAuth } from '../utils/contents';
 import { useAdmin } from '../utils/contents';
-import { FaHome, FaSignInAlt, FaRegUser } from 'react-icons/fa';
-import { FaAdn } from 'react-icons/fa';
-import { FaSign } from 'react-icons/fa';
-import { } from "react-icons/io5"
+import { FaHome, FaSignInAlt, FaRegUser, FaHdd, FaAdn, FaShoppingBag } from 'react-icons/fa';
+
 
 const Container = ({ children }) => {
   const loggedIn = useAuth();
@@ -25,7 +23,7 @@ const Container = ({ children }) => {
     {
       title: "About",
       url: '/about',
-      icon: '',
+      icon: <FaHdd  />,
       access: 'all',
     },
   { 
@@ -56,7 +54,7 @@ const Container = ({ children }) => {
   {
     title: "Orders",
     url: '/orders',
-    icon: '',
+    icon:  <FaShoppingBag />,
     access: 'loggedIn',
   },
 

@@ -41,6 +41,25 @@ export const createOrder = createAsyncThunk(
   }
 );
 
+
+export const cancelOrder = createAsyncThunk(
+  'order/cancelOrder',
+  async (orderId) => {
+    try {
+      const response = await axios.delete(`${API_URL}/orders/${orderId}`, {
+        headers, 
+      });
+      console.log(response.data, 'response.data');
+      return { orderId };
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+
+
+
+
 const initialState = {
   orders: [],
   error: null,
@@ -72,6 +91,21 @@ export const orderSlice = createSlice({
         state.orders.push(action.payload);
       })
       .addCase(createOrder.rejected, (state, action) => {
+        state.status = 'error';
+        state.error = action.error.message;
+      })
+      .addCase(cancelOrder.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(cancelOrder.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        const canceledOrderId = action.payload.orderId;
+        const canceledOrder = state.orders.find((order) => order.id === canceledOrderId);
+        if (canceledOrder) {
+          canceledOrder.status = 'canceled';
+        }
+      })
+      .addCase(cancelOrder.rejected, (state, action) => {
         state.status = 'error';
         state.error = action.error.message;
       });

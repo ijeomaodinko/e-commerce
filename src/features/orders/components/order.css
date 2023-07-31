@@ -26,9 +26,13 @@ h2 {
     border-radius: 0.5rem;
 }
 
+.order-data h2 {
+    font-size: large;
+}
+
 li {
     border: 2px solid #f3eeee;
-    text-decoration: none;
+    list-style: none;
 }
 
 .orderInfo {
@@ -49,3 +53,203 @@ font-weight: bold;
 margin-top: 1.6rem;
 }
 
+.orderCancelBtn {
+    width: 9rem;
+    height: 2rem;
+    background-color: transparent;
+    border: 2px solid #e52d27;
+    color: #e52d27;
+    text-align: center;
+    margin-top: 6rem;
+    border-radius: 4rem;
+    padding-bottom: 1.9rem;
+    padding-top: 0.5rem;
+    font-size: large;
+}
+
+.orderQuantityBtn {
+    background-color: #fff;
+    border: 1px solid #f3eeee;
+    max-width: 6rem;
+    max-height: 2rem;
+    color: #000;
+    padding-bottom: 2rem;
+    margin-top: 0;
+    font-size: large;
+}
+
+.orderQuantity {
+    background-color: #fff;
+    border: 1px solid #f3eeee;
+    width: auto;
+    max-height: 4rem;
+    text-align: center;
+    padding-top: 0.7rem;
+    padding-left: 1rem;
+    padding-bottom: 0.9rem;
+    padding-right: 1rem;
+    border-radius: 0.2rem;
+}
+
+.orderBtn {
+    width: 9rem;
+    height: 2rem;
+    background-color: #e52d27;
+    color: #fff;
+    text-align: center;
+    margin-top: 1.9rem;
+    border-radius: 4rem;
+    padding-bottom: 1.9rem;
+    padding-top: 0.5rem;
+    font-size: large;
+}
+
+.order-details-container {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #e52d27;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 1rem;
+    background-color: #fff;
+}
+
+.order-data {
+    padding: 1rem;
+    padding-top: 0.5rem;
+}
+
+.order-data h2 {
+    text-align: left;
+}
+
+.order-data-price {
+    font-size: large;
+    font-weight: bold;
+    margin-top: 1.9rem;
+}
+
+.order-image  img {
+  width: 60%;
+  border: 1px solid #f9eaea;
+  margin-top: 1.5rem;
+  margin-left: 1rem;
+  border-radius: 0.7rem;
+}
+
+.order-quantity {
+    padding-left: 1rem;
+    font-weight: bold;
+    width: 50%;
+    padding-top: 1.5rem;
+}
+
+.order-quantity label {
+    margin-right: 1rem;
+}
+.order-price {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1.5rem;
+}
+
+.order-price label {
+    margin-right: 1rem;
+}
+
+@media (max-width: 600px) {
+    h2 {
+      font-size: large;
+    }
+
+    .order-details-container {
+       display: flex;
+       flex-direction: column;
+    }
+  
+    .orderContainer {
+      flex-direction: column; 
+      gap: 2rem;
+      width: 120%;
+      margin-left: -3.29rem;
+      padding-left: 0.6rem;
+    }
+  
+    .orderImgContainer {
+      padding-left: 0; 
+      font-size: small; 
+      line-height: normal; 
+    }
+  
+    .orderimg {
+      height: 120px; 
+      width: 60%;
+      margin-top: -4rem;
+      margin-left: 6.9rem;
+    }
+  
+    .orderInfo {
+      flex-direction: column; 
+      gap: 2rem; 
+      margin-top: -5.9rem;
+    }
+    .order-data-price {
+     margin-top: 0;
+     margin-bottom: 0;
+    }
+  
+    .orderQuantityBtn {
+      max-width: 4rem; 
+    }
+    .orderQuantity {
+      max-width: 2rem;
+    }
+    .orderPrice {
+      font-size: medium; 
+    }
+  
+    .order-data {
+      padding-top: 0; 
+    }
+  
+    .order-image img {
+      width: 90%; 
+      height: 9rem;
+      margin-top: 0.6rem; 
+      margin-left: 1rem;
+      margin-right: auto; 
+    }
+  
+    .order-quantity {
+      margin-top: -2rem;
+      padding-left: 1rem; 
+      width: 16rem;
+    }
+
+    .orderquanti {
+      margin-top: -2rem;
+    }
+
+    .order-price {
+      margin-top: 0.6rem;
+    }
+  
+    .order-price label {
+      margin-right: 0; 
+    }
+
+    .orderCancelBtn  {
+      margin-top: -2rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .ordercompany {
+        margin-top: -2rem;
+    }
+    .orderBtn {
+        margin-top: 0.6rem;
+        margin-bottom: 0.6rem;
+    }
+  }
+  

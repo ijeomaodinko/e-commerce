@@ -37,7 +37,8 @@
     text-decoration: none;
     color: #fff;
     flex-direction: column;
-    padding-left: 1.5rem;
+    padding-left: 1rem;
+    margin-bottom: 0.1rem;
     
 }
 
@@ -57,14 +58,14 @@
 .nav-item {
     display: flex;
     align-items: center;
-    margin-left: 20px;
+    margin-left: 10px;
     text-decoration: none;
     color: #fff;
 }
 
 .cart-container {
     position: relative;
-    width: autp; /* Adjust the width to your preference */
+    width: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -76,14 +77,14 @@
 }
 
 .productCart {
-    margin-top: -0.3rem;
+    margin-top: -0.4rem;
 
 }
 
 .productsCount {
     position: absolute;
     margin-top: 1.1rem;
-    margin-left: 0.9rem;
+    margin-left: 1.6rem;
     transform: translateX(-50%);
     background-color: rgba(0, 0, 0, 0.5);
     color: #fff; 
@@ -93,3 +94,93 @@
     
 }
 
+.search-bar {
+    position: relative;
+}
+
+.searchBar {
+    padding-right: 0; 
+    width: 100%;
+    height: 1rem;
+    border: 1px solid #e52d27;
+    border-radius: 2rem;
+}
+
+.searchIcon {
+    padding-bottom: 0.5rem;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 1; 
+
+}
+
+
+/* Base styles for .navbar */
+
+/* ... (existing CSS rules) ... */
+
+/* Media query for max-width 600px */
+@media (max-width: 600px) {
+    .navbar {
+      height: auto; 
+      flex-direction: column; 
+      justify-content: center;
+    }
+  
+    .navbar_logo {
+      display: flex; /* Display the logo and company name in a row on smaller screens */
+      align-items: center; 
+      margin-left: -9rem;
+      margin-top: 0;
+    }
+    
+    .navbar_logo img {
+      margin-top: 0;
+      width: 60%;
+      max-height: 4rem; /* Reduce the maximum height on smaller screens */
+    }
+  
+    .brandName {
+      font-size: 1.5rem; /* Reduce the font size on smaller screens */
+      margin-left: 0.5rem; /* Add some space between the logo and company name on smaller screens */
+    }
+  
+    .navbar_items {
+      display: flex; /* Display the items in a row on smaller screens */
+      align-items: center; /* Center the items vertically on smaller screens */
+      gap: 20px; /* Add some space between the items on smaller screens */
+      margin-top: -1rem;
+    }
+  
+    .navitem {
+      margin-left: 0; /* Remove the left margin on smaller screens */
+      margin-bottom: 0; /* Remove the bottom margin on smaller screens */
+      padding: 0; /* Remove the padding on smaller screens */
+    }
+  
+    .cart-container {
+      margin-top: -5rem; /* Remove the top margin on smaller screens */
+      margin-left: auto; /* Push the cart icon to the right on smaller screens */
+    }
+  
+    .productsCount {
+      font-size: 0.7rem; /* Reduce the font size on smaller screens */
+      padding: 0.1rem 0.2rem; /* Adjust the padding on smaller screens */
+    }
+  
+    .search-bar {
+      margin-top: 10px; /* Add some space between the search bar and other items on smaller screens */
+    }
+  
+    .searchBar {
+      height: 2rem; /* Adjust the height of the search bar on smaller screens */
+    }
+  
+    .searchIcon {
+      right: 5px; /* Adjust the position of the search icon on smaller screens */
+    }
+  }
+  

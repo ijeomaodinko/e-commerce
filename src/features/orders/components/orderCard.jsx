@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchOrders, getAllOrders, getOrderError, getOrderStatus } from '../orderSlice';
+import { fetchOrders, getAllOrders, getOrderError, getOrderStatus, cancelOrder } from '../orderSlice';
 import './order.css';
 
 
@@ -9,6 +9,7 @@ const OrderCard = () => {
   const orders = useSelector(getAllOrders);
   const status = useSelector(getOrderStatus);
   const error = useSelector(getOrderError);
+ 
 
   useEffect(() => {
     dispatch(fetchOrders());
@@ -21,6 +22,12 @@ const OrderCard = () => {
   if (status === 'failed') {
     return <div>Error: {error}</div>;
   }
+
+
+ const handleCancelOrder = (orderId) => {
+    dispatch(cancelOrder(orderId));
+  };
+
 
   return (
     <div>
@@ -42,10 +49,15 @@ const OrderCard = () => {
               <p className='orderCompanyName'> Company Name: {order.company.name || 'Unknown Company'}</p>
               </div>
               <div>
-              <p>Quantity: {order.quantity}</p>
+              <p className='orderquanti'>Quantity: {order.quantity}</p>
               <p className='orderPrice'> Price: ${order.price}</p>
               </div>
-            </div>
+
+           
+            <button onClick={() => handleCancelOrder(order.id)}   className='orderCancelBtn'>Cancel</button>
+        
+
+              </div>
             </div>
           </li>
         ))}

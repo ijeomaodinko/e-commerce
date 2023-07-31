@@ -11,7 +11,7 @@ import { getAllProducts, selectProduct } from '../productSlice';
 import { useAuth } from '../../../components/utils/contents';
 
 const ProductDetails = () => {
-  const selectedProduct = useSelector(getProductDetails);
+  const selectedProduct = useSelector(getProductDetails) || [];
   const companies = useSelector(getAllCompanies);
   const categories = useSelector(getAllCategories);
   const navigate = useNavigate();
@@ -37,9 +37,15 @@ const ProductDetails = () => {
 
   const products = useSelector(getAllProducts);
   const handleOrder = (productId) => {
-    const response = selectedProduct[0]; // Use selectedProduct instead of product
+
+    if (!selectedProduct[0]) {
+      console.log('No product selected');
+      return;
+    }
+
+    const response = selectedProduct[0]; 
     dispatch(selectProduct(response));
-    navigate('/orderform', { state: { product: response } }); // Pass response as the product
+    navigate('/orderform', { state: { product: response } }); 
     console.log(response, 'order, click response');
   };
   
@@ -52,19 +58,23 @@ const ProductDetails = () => {
 
   const product = selectedProduct[0];
 
+  
   const company = companies.find((c) => c.id === product.company_id) || {};
-
+  
   const category = categories.find((c) => c.id === product.category_id);
-
+  
   const handleAddToCart = (product) => {
     if (isInCart(product.id)) {
-      // Product is already in the cart, handle accordingly (e.g., show a notification)
       console.log('Product is already in the cart');
     } else {
       dispatch(addToCart(product));
       console.log(product);
     }
   };
+
+  if (!product || !product.company_id) {
+    return <div>Product data is incomplete.</div>;
+  }
 
   return (
     <Container>
