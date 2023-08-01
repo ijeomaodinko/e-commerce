@@ -63,6 +63,12 @@ select {
     color: #000;
 }
 
+
+/* reviews */
+.username-first-letter  {
+  color: red;
+}
+
 @media (max-width: 600px) {
     .product-list {
       justify-content: center; 

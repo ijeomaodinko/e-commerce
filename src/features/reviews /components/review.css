@@ -1,0 +1,21 @@
+.modalStyles {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    display: show ? 'block' : 'none',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    zIndex: 999,
+  };
+
+.modalContentStyles {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: '400px',
+    padding: '20px',
+    backgroundColor: '#fff',
+    borderRadius: '4px',
+  };
