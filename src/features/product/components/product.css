@@ -66,7 +66,117 @@ select {
 
 /* reviews */
 .username-first-letter  {
-  color: red;
+  color: #ffe;
+}
+
+.user-rating-summary {
+  margin-left: 0;
+  align-content: center;
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+}
+
+.user-rating-summary p {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.reviews {
+  position: fixed;
+  top: 5rem;
+  left: 19rem;
+  width: 60%;
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 1px solid #e0e0e2
+}
+.review-remove {
+  text-align: end;
+  position: relative;
+}
+
+.review-remove::before {
+  content: "X";
+  display: block;
+  width: 2.9rem;
+  height: 2.1rem;
+  padding-top: 0.9rem;
+  background-color: rgb(246, 205, 42);
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  line-height: 24px;
+  border-radius: 50%;
+  position: absolute;
+  top: -2.9rem;
+  right: -29px;
+}
+
+.reviews h3 {
+  text-align: center;
+}
+
+.reviews .username-first-letter {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-right: 12.7px;
+  padding-left: 12.7px;
+  border-radius: 50%;
+  color: #fff; 
+  text-align: center;
+  line-height: 30px;
+  font-weight: bold;
+  font-size: 16px;
+  margin-right: 2rem;
+}
+
+.review {
+  display: flex;
+  gap: 2rem;
+  font-weight: bold;
+  font-size: large;
+}
+
+.review-date {
+  top: 1rem;
+}
+
+.reviews p span {
+top: -0.2rem;
+}
+
+.review-username {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  height: 2.5rem;
+  margin-top: 2.9rem;
+}
+
+.review-user {
+ margin-top: 0;
+ font-size: small;
+ font-weight: bold;
+}
+.review-date {
+  margin-top: 1.5rem;
+  margin-left: -1.5rem;
+  font-size: small;
+}
+
+.rating-review {
+  position: relative;
+  top: 0.6rem;
+  border-left: 0.6px solid #e1dfdf;
+  padding-left: 0.6rem;
+}
+
+.review-text {
+  font-size: medium;
+  margin-top: 0.6rem;
 }
 
 @media (max-width: 600px) {
@@ -114,6 +224,19 @@ select {
   
     .productscount {
       color: #000; 
+    }
+
+
+    .user-rating-summary {
+      justify-content: center;
+    }
+
+    .reviews {
+      position: fixed;
+      top: 9rem;
+      left: 1rem;
+      width: 80%;
+      background-color: #fff;
     }
   }
   

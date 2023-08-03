@@ -5,7 +5,7 @@
     justify-content: space-between;
     height: 60px;
     padding: 0 20px;
-    background-color: #e52d27;
+    background-color: #0F1111;
     color: #fff;
 }
 .navbar_logo {
@@ -24,6 +24,15 @@
     font-weight: 600;
     font-style:unset;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;   
+}
+
+.navbar .usernamebar {
+  display: flex;
+  flex-direction: column;
+  margin-left: 29rem;
+  margin-top: 1rem;
+  font-size: medium;
+  color: #fff;
 }
 .navbar_items {
     display: flex;
@@ -64,46 +73,65 @@
 }
 
 .cart-container {
-    position: relative;
-    width: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-  }
-
-.shoppingCart {
-    margin-top: 1.9rem;
-}
-
-.productCart {
-    margin-top: -0.4rem;
-
+  position: absolute;
+  top: 1rem;
+  left: 70%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 500;
 }
 
 .productsCount {
-    position: absolute;
-    margin-top: 1.1rem;
-    margin-left: 1.6rem;
-    transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #fff; 
-    font-size: 0.79rem; 
-    padding: 0.1rem 0.3rem; 
-    border-radius: 50%; 
-    
+  position: absolute;
+  background-color: rgb(246, 205, 42);
+  top: -1.9rem;
+  left: 60%;
+  transform: translateX(-50%);
+  color: #fff;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shoppingCart {
+  position: absolute;
+  top: 0.1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 25px;
+  border-color: #0F1111;
+}
+
+.productCart {
+  margin-top: 1.5rem;
+  text-align: center;
 }
 
 .search-bar {
-    position: relative;
+  position: absolute;
+  top: 0.9rem;
+  left: 50%; 
+  transform: translateX(-50%); 
+  display: flex;
+  align-items: center;
+  border: 1px solid #0F1111;
 }
 
 .searchBar {
-    padding-right: 0; 
-    width: 100%;
-    height: 1rem;
-    border: 1px solid #e52d27;
-    border-radius: 2rem;
+  width: 200px;
+  height: 40px;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  outline: none; 
+  height: 1rem;
+  border-radius: 2rem;
 }
 
 .searchIcon {
@@ -113,16 +141,11 @@
     right: 10px;
     transform: translateY(-50%);
     pointer-events: none;
+    cursor: pointer;
     z-index: 1; 
 
 }
 
-
-/* Base styles for .navbar */
-
-/* ... (existing CSS rules) ... */
-
-/* Media query for max-width 600px */
 @media (max-width: 600px) {
     .navbar {
       height: auto; 
@@ -131,7 +154,7 @@
     }
   
     .navbar_logo {
-      display: flex; /* Display the logo and company name in a row on smaller screens */
+      display: flex; 
       align-items: center; 
       margin-left: -9rem;
       margin-top: 0;
@@ -140,47 +163,74 @@
     .navbar_logo img {
       margin-top: 0;
       width: 60%;
-      max-height: 4rem; /* Reduce the maximum height on smaller screens */
+      max-height: 4rem; 
     }
   
     .brandName {
-      font-size: 1.5rem; /* Reduce the font size on smaller screens */
-      margin-left: 0.5rem; /* Add some space between the logo and company name on smaller screens */
+      font-size: 1.5rem; 
+      margin-left: 0.5rem; 
     }
   
     .navbar_items {
-      display: flex; /* Display the items in a row on smaller screens */
-      align-items: center; /* Center the items vertically on smaller screens */
-      gap: 20px; /* Add some space between the items on smaller screens */
+      display: flex; 
+      align-items: center;
+      gap: 20px;
+      margin-left: 10%;
       margin-top: -1rem;
     }
   
     .navitem {
-      margin-left: 0; /* Remove the left margin on smaller screens */
-      margin-bottom: 0; /* Remove the bottom margin on smaller screens */
-      padding: 0; /* Remove the padding on smaller screens */
+      margin-left: 0; 
+      margin-bottom: 0;
+      padding: 0; 
     }
   
     .cart-container {
-      margin-top: -5rem; /* Remove the top margin on smaller screens */
-      margin-left: auto; /* Push the cart icon to the right on smaller screens */
+      left: 81%;
+      top: -9px;
     }
-  
     .productsCount {
-      font-size: 0.7rem; /* Reduce the font size on smaller screens */
-      padding: 0.1rem 0.2rem; /* Adjust the padding on smaller screens */
+      top: 0.1rem;
+      left: 60%;
     }
-  
+    .shoppingCart {
+      top: 2.3rem;
+      left: 50%;
+    }
+    .productCart {
+      margin-top: 4rem;
+    }
+
     .search-bar {
-      margin-top: 10px; /* Add some space between the search bar and other items on smaller screens */
+    display: flex;
+    position: relative;
+    top: -0.6rem;
+    left: 50%;
+    width: 90%;
+    border: none;
+    }
+
+    .searchBar{
+      width: 100%;
+      border: 1px solid #0F1111;
     }
   
     .searchBar {
-      height: 2rem; /* Adjust the height of the search bar on smaller screens */
+      height: 2rem;
     }
   
     .searchIcon {
-      right: 5px; /* Adjust the position of the search icon on smaller screens */
+      right: 5px; 
+    }
+
+    .navbar .usernamebar {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 2.9rem;
+    left: -116%;
+    font-size: medium;
+    color: #fff;
     }
   }
   

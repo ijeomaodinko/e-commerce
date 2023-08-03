@@ -43,7 +43,9 @@ export const getUserRatingSummary = (state, productId) => {
   return sumRating / productReviews.length;
 };
 
-
+export const gettotalReviewsPerProduct = (state, productId) => {
+  return state.review.reviews.filter((review) => review.product_id === productId).length;
+};
 
 
 const initialState = {

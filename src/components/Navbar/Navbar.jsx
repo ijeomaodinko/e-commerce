@@ -48,9 +48,11 @@ const Navbar =({ logo= LOGO, items, loggedIn, isAdmin })=> {
       <img src = { LOGO } alt="logo" />
       <p className='brandName'>{COMPANY_NAME}</p>
       </div>
+     
+     {loggedIn ===true && <p className='usernamebar'> Hello, <span>{ userName.charAt(0).toUpperCase() + userName.slice(1) } </span></p>}
+
       <CartWidget    productsCount={productsCount}  />
       <div className='navbar_items'>
-     {loggedIn ===true && <p> Hello, <span>{ userName.charAt(0).toUpperCase() + userName.slice(1) } </span></p>}
        {filteredItems.map((item) => (
          <NavItems key={item.title} item={item} />
        ))}

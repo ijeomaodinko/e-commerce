@@ -18,7 +18,8 @@ export const CartWidget = ({ productsCount }) => {
   return (
     <div onClick={navigateToCart}  className="cart-container">
      <p className="productsCount" onClick={incrementCount}>{count}</p>
-  <FaShoppingCart className="shoppingCart" alt="Go to Cart" size={23}  />
+  <FaShoppingCart className="shoppingCart" alt="Go to Cart" size={26}  />
+  
       <p className='productCart'>Cart</p>
    </div>
   );

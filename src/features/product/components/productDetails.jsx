@@ -10,8 +10,10 @@ import { fetchCategories } from '../productSlice';
 import { getAllProducts, selectProduct } from '../productSlice';
 import { useAuth } from '../../../components/utils/contents'; 
 import ReviewModal from '../../reviews /components/reviewModal';
-import { fetchReviewsForProduct, createReviewForProduct, getAllReviews, getUserRatingSummary }  from '../../reviews /reviewSlice';
+import { fetchReviewsForProduct, createReviewForProduct, getAllReviews, getUserRatingSummary, gettotalReviewsPerProduct }  from '../../reviews /reviewSlice';
 import RatingStars from 'react-rating-stars-component';
+import { isloggedIn } from '../../../components/utils/contents';
+import { generateRandomColor } from '../../../components/utils/contents';
 
 
 
@@ -27,8 +29,9 @@ const ProductDetails = () => {
   const [reviewText, setReviewText] = useState('');
   const [showReviews, setShowReviews] = useState(false);
 
+
   
-  const isloggedIn = useAuth();
+  // const isloggedIn = useAuth();
 
   
   useEffect(() => {
@@ -37,7 +40,6 @@ const ProductDetails = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    // Save cart data to local session storage whenever it changes
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
 
@@ -128,7 +130,16 @@ const ProductDetails = () => {
   };
 
   const userRatingSummary = useSelector((state) => getUserRatingSummary(state, product.id));
+  const totalReviews = useSelector((state) => gettotalReviewsPerProduct(state, product.id)); 
+     
+  const ratingChanged = (newRating) => {
+  };
 
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedDate = new Date(dateString).toLocaleString('en-US', options);
+    return formattedDate;
+  };
 
   return (
     <Container>
@@ -152,6 +163,14 @@ const ProductDetails = () => {
               <span>{category ? category.name : 'Unknown Category'}</span> 
               </h3>
             </div>
+
+            <div className="user-rating-summary">
+        <RatingStars value={userRatingSummary.toFixed(1)} edit={false} size={24} isHalf={true}  onChange={ratingChanged} />
+       <p style={{ fontWeight: 'normal', textDecoration: 'none'}}>{userRatingSummary.toFixed(1)}</p>
+        <p onClick={() => setShowReviews(!showReviews)}>({totalReviews} <span> reviews)</span></p>
+           </div>
+
+
             { isloggedIn &&   <button disabled={isInCart(product.id)} onClick={() => handleAddToCart(product)}>Add to Cart</button>}
           
        { isloggedIn && <button onClick={handleOrder}>Order</button> }
@@ -163,34 +182,28 @@ const ProductDetails = () => {
         </div>
       </div>
 
-      <div className="user-rating-summary">
-        <p onClick={() => setShowReviews(!showReviews)}>review</p>
-        <RatingStars
-          count={5}
-          value={ userRatingSummary.toFixed(1) }
-          size={24}
-          isHalf={true}
-          activeColor="#ffd700"
-          edit={false}
-          emptyIcon={<i className="far fa-star"></i>}
-          halfIcon={<i className="fa fa-star-half-alt"></i>}
-          fullIcon={<i className="fa fa-star"></i>}
-        />
-        <p>{userRatingSummary.toFixed(1)}</p>
-      </div>
+      
 
      {showReviews && <div className='reviews'>
-        <h3>Reviews:</h3>
+      <p className='review-remove'  onClick={() => setShowReviews(false)} ></p>
+        <h3>Reviews</h3>
+        <p className='review'>{userRatingSummary.toFixed(1)}<span>
+        <RatingStars value={userRatingSummary.toFixed(1)} edit={false} size={24} isHalf={true}  onChange={ratingChanged} halfIcon={<i className="fa fa-star-half-alt"></i>} />
+        </span>
+        </p>
         {reviews.map((review) => (
           <div key={review.id}>
             {review.user_name && (
-        <p>
-          <span className="username-first-letter">{review.user_name.charAt(0).toUpperCase()}</span>
-          {review.user_name}
-        </p>
+        <div className='review-username'>
+          <span className="username-first-letter" style={{ backgroundColor: generateRandomColor() }}>{review.user_name.charAt(0).toUpperCase()}</span> 
+         <p className='review-user'>{review.user_name}</p>
+         <p className='review-date'>{formatDate(review.created_at)}</p>
+        </div>
       )}
+          <div className='rating-review'>
             <RatingStars value={review.rating} />
-            <p>{review.review_text}</p>
+            <p className='review-text'>{review.review_text}</p>
+          </div>
           </div>
         ))}
         <button onClick={handleShowReviewModal}>Write a Review</button>

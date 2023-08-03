@@ -57,8 +57,8 @@ margin-top: 1.6rem;
     width: 9rem;
     height: 2rem;
     background-color: transparent;
-    border: 2px solid #e52d27;
-    color: #e52d27;
+    border: 2px solid #2ecc71;
+    color: #2ecc71;
     text-align: center;
     margin-top: 6rem;
     border-radius: 4rem;
@@ -94,7 +94,7 @@ margin-top: 1.6rem;
 .orderBtn {
     width: 9rem;
     height: 2rem;
-    background-color: #e52d27;
+    background-color:#2ecc71;
     color: #fff;
     text-align: center;
     margin-top: 1.9rem;
@@ -107,7 +107,7 @@ margin-top: 1.6rem;
 .order-details-container {
     display: flex;
     flex-direction: row;
-    border: 1px solid #e52d27;
+    border: 1px solid #2ecc71;
     width: 90%;
     margin-left: auto;
     margin-right: auto;
