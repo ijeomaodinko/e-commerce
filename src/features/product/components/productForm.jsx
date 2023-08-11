@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react';
+import React, { useEffect, useState} from 'react';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
@@ -9,6 +9,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { handleToast } from '../../../components/utils/contents';
 import Container from '../../../components/Container';
+import InputImage from './inputImage';
+
 
 const productSchema = yup.object().shape({
     name: yup.string().required().min(3, 'Name must be at least 3 characters'),
@@ -34,9 +36,25 @@ function ProductForm() {
         }
     }, [status, dispatch]);
 
-    const { register, handleSubmit, formState:{ errors } } = useForm({
+
+
+    const { register, handleSubmit, formState:{ errors }, setValue } = useForm({
       resolver: yupResolver(productSchema)
     });
+
+    const handleImageChange = (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setImageUrl(reader.result);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        setImageUrl(event.target.value);
+      }
+    };
+
 
 const onSubmit = (product) => {
     dispatch(createProduct(product));
@@ -49,6 +67,9 @@ if (status === 'loaading'){
 if (status === 'error'){
     return <div>{error}</div>
 }
+
+
+
   return (
     <Container>
         <ToastContainer />
@@ -60,8 +81,7 @@ if (status === 'error'){
         {errors.name && <p> {errors.name.message} </p>}
 
         <label htmlFor='img'> Image: </label>
-        <input type="text" name="img" {...register('img')} />
-        {errors.img && <p> { errors.img.message }</p>}
+        <InputImage register={register}  setValue={setValue}  />
 
         <label htmlFor='description'>Description: </label>
         <input type="text" name="description" {...register('description')} />
@@ -88,7 +108,7 @@ if (status === 'error'){
         {errors.company_id  && <p>{errors.company_id.message}</p>}
     
     <label htmlFor='price'>Price: </label>
-    <input type="number" name="price" {...register('price')} />
+    <input type="number" name="price" {...register('price')}  step='0.01'/>
     {errors.price && <p> {errors.price.message}</p>}
 
     <button type="submit">Submit</button>

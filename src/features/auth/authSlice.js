@@ -5,7 +5,7 @@ import { API_URL } from '../../components/utils/contents';
 
 export const signUpUser = createAsyncThunk(
     'auth/signUpUser',
-    async({name, address, email, password}, {dispatch}) => {
+    async({name, address, email, password, role}, {dispatch}) => {
       try {
         const response = await axios.post(`${API_URL}/api/auth/signup`, {
             user: {
@@ -13,6 +13,7 @@ export const signUpUser = createAsyncThunk(
                 address,
                 email,
                 password,
+                role,
             },
           });
         if (response.status === 201){
@@ -23,7 +24,7 @@ export const signUpUser = createAsyncThunk(
         sessionStorage.setItem('user', JSON.stringify(user));
         console.log('user', user, 'token', token);
 
-        window.location.href = '/login';
+        window.location.href = '/auth/login';
         return response.data;
         }
       }catch (error) {

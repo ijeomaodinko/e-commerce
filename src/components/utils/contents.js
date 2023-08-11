@@ -20,6 +20,15 @@ export const useAdmin = () => {
     return false;
 };
 
+export const useSeller = () => {
+    const user = sessionStorage.getItem('user');
+    if (user) {
+      const parsedUser = JSON.parse(user);
+      return parsedUser.role === 'seller';
+    }
+    return false;
+  };
+
 export const handleToast = ({ msg, type = 'success' }) =>
     toast(msg, {
         position: "top-center",

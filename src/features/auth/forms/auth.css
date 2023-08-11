@@ -45,6 +45,17 @@ button {
     cursor: pointer;
 }
 
+select  {
+    width: 105%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #6d6a6a;
+    background-color: #fff;
+}
+
 .button:hover {
     background-color: #27ae60;
 }

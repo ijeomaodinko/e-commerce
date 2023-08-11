@@ -22,6 +22,11 @@
     height: 100px;
 }
 
+.product-container form  {
+ margin-left: auto;
+ margin-right: auto;
+}
+
 .product-detail-container{
     max-width: 80%;
     background-color: #fff;
@@ -63,6 +68,28 @@ select {
     color: #000;
 }
 
+.search-bar {
+  display: flex;
+  position: relative;
+  top: -4.49rem;
+  margin-left: -12%;
+  width: 29%;
+  border: none;
+  }
+
+  .searchBar{
+    width: 100%;
+    border: 1px solid #0F1111;
+  }
+
+  .searchBar {
+    height: 1.6rem;
+  }
+
+  .searchIcon {
+    right: 5px; 
+  }
+
 
 /* reviews */
 .username-first-letter  {
@@ -83,14 +110,18 @@ select {
 }
 
 .reviews {
-  position: fixed;
-  top: 5rem;
+  position: absolute;
+  top: 6rem;
   left: 19rem;
   width: 60%;
+  height: 60%;
   background-color: #fff;
   padding: 1rem;
   border-radius: 1rem;
-  border: 1px solid #e0e0e2
+  border: 1px solid #e0e0e2;
+  overflow: scroll;
+  overflow-x: hidden;
+  padding-right: 20px;
 }
 .review-remove {
   text-align: end;
@@ -102,7 +133,7 @@ select {
   display: block;
   width: 2.9rem;
   height: 2.1rem;
-  padding-top: 0.9rem;
+  padding-top: 1rem;
   background-color: rgb(246, 205, 42);
   color: #fff;
   font-weight: bold;
@@ -110,13 +141,15 @@ select {
   text-align: center;
   line-height: 24px;
   border-radius: 50%;
-  position: absolute;
-  top: -2.9rem;
-  right: -29px;
+  position: relative; 
+  z-index: 1;
+  top: -1.9rem;
+  left: 95.9%;
 }
 
 .reviews h3 {
   text-align: center;
+  margin-top: -2.9rem;
 }
 
 .reviews .username-first-letter {
@@ -238,5 +271,19 @@ top: -0.2rem;
       width: 80%;
       background-color: #fff;
     }
+    .search-bar {
+      display: flex;
+      position: relative;
+      top: -0.49rem;
+      margin-left: 0;
+      width: 90%;
+      border: none;
+      }
+    
+      .product-container form {
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+      }
   }
   

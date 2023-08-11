@@ -3,7 +3,7 @@ import { COMPANY_NAME, LOGO } from '../utils/contents';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/footer';
 import "./container.css";
-import { useAuth } from '../utils/contents';
+import { useAuth, useSeller } from '../utils/contents';
 import { useAdmin } from '../utils/contents';
 import { FaHome, FaSignInAlt, FaRegUser, FaHdd, FaAdn, FaShoppingBag } from 'react-icons/fa';
 
@@ -13,7 +13,21 @@ const Container = ({ children }) => {
 
   const isAdmin = useAdmin();
 
+  const isSeller = useSeller();
+
+  const user = JSON.parse(sessionStorage.getItem('user')); 
+
+  const userName = user ? user.name : null; 
+
+  console.log(userName);
+
   const items = [
+    { 
+      title: userName ? userName.charAt(0).toUpperCase() + userName.slice(1) : '',
+      url: '',
+      icon: "Hello,",
+      access: 'loggedIn',
+    },
     { 
       title: "Home",
       url: '/',
@@ -30,7 +44,7 @@ const Container = ({ children }) => {
     title: "Add Product",
     url: '/products/new',
     icon: '',
-    access: 'admin',
+    access: 'seller',
   },
   {
     title: "Admin",
@@ -61,7 +75,7 @@ const Container = ({ children }) => {
   ];
   return (
     <div className='container'>
-    <Navbar  logo={LOGO} loggedIn={loggedIn} isAdmin={isAdmin} items={items} />
+    <Navbar  logo={LOGO} loggedIn={loggedIn} isAdmin={isAdmin}  isSeller={isSeller}  items={items} />
       <div className='content'>  {children} </div>
     <Footer  logo={LOGO} companyName={COMPANY_NAME} />
     </div>

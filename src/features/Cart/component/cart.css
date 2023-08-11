@@ -33,17 +33,21 @@
   }
   
   .cart button {
-    background-color: #ff6b6b;
-    width: 10%;
+    background-color: rgb(246, 205, 42);
     color: #fff;
     border: none;
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
+    width: 9rem;
+    height: 2rem;
+    border-radius: 4rem;
+    padding-bottom: 1.9rem;
+    padding-top: 0.5rem;
   }
   
   .cart button:hover {
-    background-color: #ff3f3f;
+    background-color: rgb(246, 205, 42);
   }
   
   .cart-company {

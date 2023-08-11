@@ -8,7 +8,6 @@ import { addToCart } from '../../Cart/cartSlice';
 import { fetchCompanies } from '../productSlice';
 import { fetchCategories } from '../productSlice';
 import { getAllProducts, selectProduct } from '../productSlice';
-import { useAuth } from '../../../components/utils/contents'; 
 import ReviewModal from '../../reviews /components/reviewModal';
 import { fetchReviewsForProduct, createReviewForProduct, getAllReviews, getUserRatingSummary, gettotalReviewsPerProduct }  from '../../reviews /reviewSlice';
 import RatingStars from 'react-rating-stars-component';
@@ -29,11 +28,6 @@ const ProductDetails = () => {
   const [reviewText, setReviewText] = useState('');
   const [showReviews, setShowReviews] = useState(false);
 
-
-  
-  // const isloggedIn = useAuth();
-
-  
   useEffect(() => {
     dispatch(fetchCompanies());
     dispatch(fetchCategories());
@@ -112,13 +106,14 @@ const ProductDetails = () => {
 
   const userId = user ? user.id : null;
   const userName = user ? user.name : null;
+  const userRole = user ? user.role : null;
 
   const handleReviewSubmit = () => {
     const review = { 
       user_id: userId,
       rating, 
       review_text: reviewText,
-      user_name: userName }
+      user_name: userName, }
     createReview(product.id,  review);
     setShowReviewModal(false);
     setRating(0);
@@ -155,17 +150,17 @@ const ProductDetails = () => {
             <p>${product.price}</p>
             <div className='company'>
               <h3>Company: 
-              <span>{company.name || 'Unknown Company'}</span>               
+               <span> {company.name || 'Unknown Company'}</span>               
               </h3>
             </div>
             <div className='category'>
               <h3>Category:
-              <span>{category ? category.name : 'Unknown Category'}</span> 
+              <span> {category ? category.name : 'Unknown Category'}</span> 
               </h3>
             </div>
 
             <div className="user-rating-summary">
-        <RatingStars value={userRatingSummary.toFixed(1)} edit={false} size={24} isHalf={true}  onChange={ratingChanged} />
+        <RatingStars value={userRatingSummary} edit={false} size={24} isHalf={true}  onChange={ratingChanged} />
        <p style={{ fontWeight: 'normal', textDecoration: 'none'}}>{userRatingSummary.toFixed(1)}</p>
         <p onClick={() => setShowReviews(!showReviews)}>({totalReviews} <span> reviews)</span></p>
            </div>
@@ -188,7 +183,7 @@ const ProductDetails = () => {
       <p className='review-remove'  onClick={() => setShowReviews(false)} ></p>
         <h3>Reviews</h3>
         <p className='review'>{userRatingSummary.toFixed(1)}<span>
-        <RatingStars value={userRatingSummary.toFixed(1)} edit={false} size={24} isHalf={true}  onChange={ratingChanged} halfIcon={<i className="fa fa-star-half-alt"></i>} />
+        <RatingStars value={userRatingSummary.toFixed(1)} edit={false} size={24} isHalf={true}  onChange={ratingChanged}  />
         </span>
         </p>
         {reviews.map((review) => (

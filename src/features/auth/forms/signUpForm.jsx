@@ -32,6 +32,9 @@ const signUpSchema = yup.object().shape({
   .string()
   .required('Name is required')
   .min(3,'Address must be at least 3 characters'),
+  role: yup
+  .string()
+  .required('User type is required'),
 });
 
 
@@ -46,22 +49,29 @@ useEffect(() => {
 }, [error]);
 
 
-
-
   const { register, handleSubmit, formState:{ errors } } = useForm({
     resolver: yupResolver(signUpSchema),
   });
 
-
+  
+  
   const onSubmit = (data)=> {
+    let roleValue = 0; 
+    if (data.role === "seller") {
+      roleValue = 1;
+    }
     dispatch(
       signUpUser({
         email: data.email,
         password: data.password,
         name: data.name,
         address: data.address,
-      })
-    );
+        role: roleValue,
+    })
+      );
+
+      
+      console.log('signupuser', signUpUser);
   };
 
   return (
@@ -84,6 +94,14 @@ useEffect(() => {
       <label>Email: </label>
       <input type='text' name='email' {...register("email")}  placeholder='Email' />
       {errors.email && <p>{errors.email.message}</p>}
+
+      <label>Select your usertype: </label>
+          <select name='role' {...register("role")} defaultValue="" placeholder='Select User Type'>
+            <option value="" disabled>Select User Type</option>
+            <option value="user">User</option>
+            <option value="seller">Seller</option>
+      </select>
+            {errors.role && <p>{errors.role.message}</p>}
 
       <label>Password: </label>
       <input type='password' name='password'{...register("password")} placeholder='**********' />
