@@ -75,15 +75,9 @@ const OrderForm = () => {
       company_id: companyId,
     };
 
-    // const config = {
-    //   headers: {
-    //     Authorization: `Bearer ${sessionStorage.getItem('token')}`,
-    //   },
-    // };
-
     dispatch(createOrder(order))
       .then(() => {
-        dispatch(fetchOrders()); // Fetch orders again after creating the new one to update the order list.
+        dispatch(fetchOrders()); 
       })
       .catch((error) => {
         console.error('Error creating order:', error);
@@ -129,6 +123,9 @@ const OrderForm = () => {
       </div>
       <div>
         <h2>All Orders</h2>
+        {orders.length === 0 ? (
+        <p>Your order is empty.</p>
+      ) : (
         <ul>
           {orders.map((order) => (
             <li key={order.id}>
@@ -155,6 +152,7 @@ const OrderForm = () => {
             </li>
           ))}
         </ul>
+      )}
       </div>
     </Container>
   );

@@ -22,9 +22,8 @@ export const signUpUser = createAsyncThunk(
         const token = response.headers.authorization;
         sessionStorage.setItem('token', token);
         sessionStorage.setItem('user', JSON.stringify(user));
-        console.log('user', user, 'token', token);
-
-        window.location.href = '/auth/login';
+        
+        window.location.href = '/';
         return response.data;
         }
       }catch (error) {

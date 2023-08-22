@@ -32,6 +32,9 @@ const OrderCard = () => {
   return (
     <div>
       <h2>All Orders</h2>
+      {orders.length === 0 ? (
+        <p>Your order is empty.</p>
+      ) : (
       <ul>
         {orders.map((order) => (
           <li key={order.id}>
@@ -62,7 +65,7 @@ const OrderCard = () => {
           </li>
         ))}
       </ul>
-
+      )}
     </div>
   );
 };
