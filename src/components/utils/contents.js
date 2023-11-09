@@ -3,7 +3,7 @@ import Logo from "../../assets/logo.png";
 
 export const LOGO = Logo;
 export const COMPANY_NAME = "EasyBazaar";
-export const API_URL = "https://morning-scrubland-85266-9e1d5b325c73.herokuapp.com";
+export const API_URL = "https://ruby-broker-app.onrender.com";
 
 
 export const useAuth = () => {
