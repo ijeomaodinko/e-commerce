@@ -3,7 +3,7 @@ import Logo from "../../assets/logo.png";
 
 export const LOGO = Logo;
 export const COMPANY_NAME = "EasyBazaar";
-export const API_URL = "https://ruby-broker-app-1.onrender.com"; 
+export const API_URL = "https://ruby-broker-app.onrender.com"; 
 
 
 export const useAuth = () => {
